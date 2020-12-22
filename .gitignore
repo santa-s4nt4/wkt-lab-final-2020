@@ -1,6 +1,11 @@
 reated by https://www.toptal.com/developers/gitignore/api/unity,visualstudio,visualstudiocode,audio
 # Edit at https://www.toptal.com/developers/gitignore?templates=unity,visualstudio,visualstudiocode,audio
 
+### Image ###
+*.jpg
+*.png
+*.mp4
+
 ### Audio ###
 *.aif
 *.iff
