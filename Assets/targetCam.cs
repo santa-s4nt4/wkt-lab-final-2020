@@ -19,6 +19,7 @@ public class targetCam : MonoBehaviour {
 
     void Start () {
         _server = new OscServer(54414);
+        Application.targetFrameRate = 30;
         //offset = GetComponent<Transform>().position - target.position;
     }
 

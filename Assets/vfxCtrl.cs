@@ -12,19 +12,19 @@ public class vfxCtrl : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
-        _server = new OscServer(54415);
+        // _server = new OscServer(54415);
     }
 
     // Update is called once per frame
     void Update()
     {
-        _server.MessageDispatcher.AddCallback (
-            "/Dis",
-            (string address, OscDataHandle data) => {
-                _dis = data.GetElementAsFloat(0);
-            }
-        );
-        VisualEffect vfx = obj.GetComponent<VisualEffect>();
-        vfx.SetFloat("Intensity", _dis);
+        // _server.MessageDispatcher.AddCallback (
+        //     "/Dis",
+        //     (string address, OscDataHandle data) => {
+        //         _dis = data.GetElementAsFloat(0);
+        //     }
+        // );
+        // VisualEffect vfx = obj.GetComponent<VisualEffect>();
+        // vfx.SetFloat("Intensity", _dis);
     }
 }
