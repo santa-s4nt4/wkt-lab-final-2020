@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.VFX;
 using OscJack;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class targetCam : MonoBehaviour {
     // Start is called before the first frame update
@@ -18,8 +18,9 @@ public class targetCam : MonoBehaviour {
     private float _dis;
 
     void Start () {
-        _server = new OscServer(54414);
-        Application.targetFrameRate = 30;
+        _server = new OscServer (54414);
+        Application.targetFrameRate = 60;
+        Screen.SetResolution (1920, 1080, true);
         //offset = GetComponent<Transform>().position - target.position;
     }
 
@@ -29,22 +30,27 @@ public class targetCam : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        Debug.Log (Time.time);
+        if (Input.GetKey (KeyCode.Escape) && Screen.fullScreen) {
+            Screen.fullScreen = false;
+        }
+
         _server.MessageDispatcher.AddCallback (
             "/High",
             (string address, OscDataHandle data) => {
-                _high = data.GetElementAsFloat(0);
+                _high = data.GetElementAsFloat (0);
             }
         );
         _server.MessageDispatcher.AddCallback (
             "/Mid",
             (string address, OscDataHandle data) => {
-                _mid = data.GetElementAsFloat(0);
+                _mid = data.GetElementAsFloat (0);
             }
         );
         _server.MessageDispatcher.AddCallback (
             "/Low",
             (string address, OscDataHandle data) => {
-                _low = data.GetElementAsFloat(0);
+                _low = data.GetElementAsFloat (0);
             }
         );
         _server.MessageDispatcher.AddCallback (
@@ -53,11 +59,11 @@ public class targetCam : MonoBehaviour {
                 // _pos.x = data.GetElementAsFloat(0);
                 // _pos.y = 0;
                 // _pos.z = data.GetElementAsFloat(0);
-                _dis = data.GetElementAsFloat(0);
+                _dis = data.GetElementAsFloat (0);
             }
         );
-        VisualEffect vfx = obj.GetComponent<VisualEffect>();
-        vfx.SetFloat("Intensity", _dis);
-        transform.RotateAround(targetObject.transform.position, new Vector3(_low, 1, 0), _high);
+        VisualEffect vfx = obj.GetComponent<VisualEffect> ();
+        vfx.SetFloat ("Intensity", _dis);
+        transform.RotateAround (targetObject.transform.position, new Vector3 (_low, 1, 0), _high);
     }
 }

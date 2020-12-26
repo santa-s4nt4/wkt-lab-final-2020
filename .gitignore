@@ -5,6 +5,7 @@ reated by https://www.toptal.com/developers/gitignore/api/unity,visualstudio,vis
 *.jpg
 *.png
 *.mp4
+*.mov
 
 ### Audio ###
 *.aif
